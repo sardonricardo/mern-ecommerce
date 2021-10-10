@@ -1,28 +1,20 @@
-const Sequelize = require('sequelize')
-const sequelize = require('./sql_products')
 
-//Definimos el modelo de datos, con el define de Postgress:
+const pool = require('../utils/dbpostgres'); 
 
-const Product = sequelize.define('makers', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true
-    },
-    name: {
-        type: Sequelize.TEXT
-    },
-    relevance: {
-        type: Sequelize.TEXT
-    },
-    price:
-    {
-        type: Sequelize.TEXT
-    },
-    makerId: 
-    {
-        type: Sequelize.INTEGER
+const products = {
+
+    getProducts: async () => {
+        try {
+            const res = await pool.query('SELECT * FROM products');
+            
+            console.log(res.rows); 
+            pool.end();
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-})
+}; 
 
-module.exports =  Product; 
+products.getProducts(); 

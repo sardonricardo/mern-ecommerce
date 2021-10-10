@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+/* const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(
     'postgres',
@@ -17,4 +17,4 @@ const sequelize = new Sequelize(
     }
 )
 
-module.exports = sequelize
+module.exports = sequelize */

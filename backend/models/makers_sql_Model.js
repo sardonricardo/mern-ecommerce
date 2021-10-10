@@ -1,31 +1,32 @@
-const Sequelize = require('sequelize')
-const sequelize = require('./sql_products')
+const pool = require('../utils/dbpostgres');
 
+const makers = {
 
-//Importamos también el model de productos, pues cada fabricante puede tener varios productos:
-const Product = require('./products_sql_Model')
-
-//Definimos el modelo de datos, con el define de Postgress:
-
-const Maker = sequelize.define('makers', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true
+    getMakers: async () => { //Funciona
+        try {
+            const res = await pool.query('SELECT * FROM makers');
+            console.log(res.rows); 
+            pool.end();
+        } catch (e) {
+            console.log(e)
+        }
     },
-    name: {
-        type: Sequelize.TEXT
-    },
-    CIF: {
-        type: Sequelize.TEXT
-    },
-    address:
-    {
-        type: Sequelize.TEXT
+
+    insertMaker: async (name, CIF, address) => { //Funciona
+        try {
+            const text = 'INSERT INTO makers(name, CIF, address) VALUES($1, $2, $3)'
+            const values = ["BANG & OLUFSEN","A78801198","Avenida de Europa (pq Empresarial la Moraleja), 2, Alcobendas, 28108 , Madrid"] 
+            
+            const res = await pool.query(text, values); 
+            console.log(res);
+            pool.end()
+
+        } catch (err) {
+            console.log(err)
+        }
     }
-})
 
-Maker.hasMany(Product, { foreingKey: 'makerId', sourceKey: 'id' }); 
-Product.belongsTo(Maker, { foreingKey: 'makerId', sourceKey: 'id'}) //Muchos productos pertenecen a un solo fabricante. 
+}
 
-module.exports = Maker; 
-
+/*  makers.getMakers();   */
+/* makers.insertMaker();  */
