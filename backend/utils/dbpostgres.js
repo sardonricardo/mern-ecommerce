@@ -4,7 +4,7 @@ const pool =  new pg.Pool({
     host: 'localhost',
     user: 'postgres',
     password: 'demo1234',
-    database: 'ecommerce',
+    database: 'ecommerceFS',
 });
 
 pool.connect()

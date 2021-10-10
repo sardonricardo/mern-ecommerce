@@ -1,26 +1,20 @@
-const pool = require('../utils/dbpostgres.js');
+const Sequelize = require('sequelize')
 
-const products  = {
-
-    createProduct: async (name, price, img, id_maker, relevance) =>  {
-
-    let client, result
-
-    try {
-        client = await pool.connect();
-        result = await client.query(`
-        INSERT INTO products (name, price, img, id_maker, relevance)
-        VALUES ($1,$2,$3,$4,$5)
-        `, [name, price, img, id_maker, relevance]);
-
-
-    } catch (err) {
-        console.log(err);
-
-        }finally {
-            client.release();
-        }
+const sequelize = new Sequelize(
+    'postgres',
+    'postgres',
+    'demo1234',
+    {
+        host: 'localhost',
+        dialect: 'postgres',
+        pool: {
+            max: 5,
+            min: 0,
+            require: 30000,
+            idle: 10000
+        },
+        logging:false //Para evitar mensajes en consola.
     }
-}
+)
 
-products.createProduct('Botas','320€', '', '1', 'important');
+module.exports = sequelize
