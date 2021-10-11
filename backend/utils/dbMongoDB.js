@@ -9,11 +9,11 @@ db.on('error', error => console.log(error));
 db.once('open', () => console.log('connection to db established'));
 
 
-module.exports = mongoose;
+module.exports = mongoose; 
 
 
-
-/* require('dotenv').config();
+/* 
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
@@ -31,4 +31,4 @@ const connectDB = async () => {
 }
 
 
-module.exports = connectDB; */
+module.exports = connectDB;   */

@@ -1,14 +1,14 @@
-/* require('dotenv').config();
+require('dotenv').config();
 
 const productData = require('./data/products');
-const connectDB = require('./utils/dbMongoDB');
+const db = require('./utils/dbMongoDB');
 const Product = require('./models/mongodb_products')
 
-connectDB();
+db(); 
 
 const importData = async () => {
     try {
-        await Product.deleteMany({});
+        await Product.deleteMany({}); 
         await Product.insertMany(productData); //insertar datos de todo lo que está en el archivo data. 
 
         console.log('Data imported correctly');
@@ -22,4 +22,4 @@ const importData = async () => {
     }
 
 
-importData();  */
+importData();  

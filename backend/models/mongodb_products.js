@@ -1,33 +1,34 @@
 const mongoose = require('mongoose')
-const mongooseSerial = require("mongoose-serial")
+
 
 const productSchema =  new mongoose.Schema(
     {
-        id: {
-            type: Number
-        },
-        name: {
+        title: {
             type: String,
             require: true,
         },
-        relevance: {
+        rating: {
             type: Number,
-            unique: false, 
+            require: true,
+        },
+        company: {
+            type: String,
+            require: true, 
+        },
+        productImage: {
+            type: String,
+            require: true,
         },
         price: {
             type: Number,
-            require: true,
-        },
-        imgUrl: {
-            type: String,
             require: true
         },
-        maker: {
+        description: {
             type: String,
             require: true
         }
     },
-    {timestamps: true} //Hora en la que creamos la categría. 
+    /* {timestamps: true} //Hora en la que creamos la categría.  */
 )
 
 
