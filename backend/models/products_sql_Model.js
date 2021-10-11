@@ -13,7 +13,7 @@ const products = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
 
 }; 
 
