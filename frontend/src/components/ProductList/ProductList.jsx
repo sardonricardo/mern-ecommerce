@@ -1,49 +1,58 @@
 import React, { useEffect, useState } from 'react';
+import Card from '../Card';
 import axios from 'axios'; 
-import List from '../List'
+import List from '../List';
+import ReactPaginate from "react-paginate"; 
+import Pagination from "../Pagination"
 
 
 const ProductList = () => {
 
-  const [inputValue, setValue] = useState([]);
- /*  const [previous, setPrevious] = useState(""); //Vacío para evitar la precarga.  */
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false); //Vacío para evitar la precarga.  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10); 
 
 
-  useEffect(
+  useEffect(() => {
+    const fetchPosts =  async () => {
+      setLoading(true);
+      const res = await axios.get('http://localhost:3002/api/products/');
+      setPosts(res.data);
+      console.log(res.data)
+      setLoading(false)
+    }
 
-    async () => {
-
-      try {
-        console.log(inputValue)
-
-        if (inputValue){
-            const resp = await axios.get('http://localhost:3002/api/products/'
-      );
-      
-      const data = await resp.data;
-      console.log(data)
-      setPosts(...posts, data)
-
-      }
-      } catch(error) {
-
-        console.log(error)
-        setPosts([]); 
-
-      }
-    },
-    [inputValue]
-  );
+    fetchPosts(); 
+  }, []);
 
 
-  return <div>
-     {posts.map(post => (
-       <div key={post.id}>
-         <h2>{post.name}</h2>
-         <h4>{post.price}€</h4></div>
-     ))}
-  </div>;
+  //Get current posts 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); 
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber); 
+
+  return <div className="container-list">
+  {currentPosts.map(currentPost => (
+    <div key={currentPost.id}>
+      <h2>{currentPost.title}</h2>
+      <h4>{currentPost.price}€</h4>
+      <img src={currentPost.productImage} width="100px"/></div>
+  ))}
+
+  <div>
+    <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
+  </div>
+
+
+
+</div>;
+
+
 };
 
 export default ProductList;
+

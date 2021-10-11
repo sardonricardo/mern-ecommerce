@@ -23,13 +23,15 @@ const makers_api_PG = {
     } catch(error) {
         console.log(error)
         res.status(500).json({
-            message: 'sometging goes wrong',
+            message: 'something goes wrong',
             data: {}
             })
         }
     }
 }
 
+/* makers_api_PG.createMaker('PIONEER', 'A61240529', 'Camino can Camps (vallsolana Business Park, Polígon can sant Joan), 17 -19, EDIF VINSON, 1A PL, PTA F, sant Cugat del Valles, 08174 , Barcelona')
+ */
 
 module.exports = makers_api_PG
 

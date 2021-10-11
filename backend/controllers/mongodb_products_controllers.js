@@ -13,8 +13,11 @@ const getAllProducts = async (req, res) => {
 const getProductByName = async (req, res) => {
 
     try {
-        const products = await Product.findByName({}); 
+        const products = await Product.findById({}); 
         res.json(products); 
+
+        console.log(products)
+        s
     } catch (error) {
         console.log(error)
         res.status(500).json({message: "Server Error"}); 
