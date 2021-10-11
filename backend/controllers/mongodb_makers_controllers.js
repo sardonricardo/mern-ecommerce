@@ -10,7 +10,7 @@ const getAllMakers = async (req, res) => {
     }
 }
 
-const getAllMakersById = async (req, res) => {
+const getAllMakersBy = async (req, res) => {
 
     try {
         const makers = await Maker.findById({}); 

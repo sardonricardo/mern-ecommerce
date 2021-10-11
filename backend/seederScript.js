@@ -1,4 +1,4 @@
-require('dotenv').config();
+/* require('dotenv').config();
 
 const productData = require('./data/products');
 const connectDB = require('./utils/dbMongoDB');
@@ -22,4 +22,4 @@ const importData = async () => {
     }
 
 
-importData(); 
+importData();  */

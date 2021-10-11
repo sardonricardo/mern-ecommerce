@@ -20,6 +20,9 @@ INSERT INTO products(name,relevance,price,makerId)
 INSERT INTO products(name,relevance,price,makerId)
     VALUES('Wireless Speakers','2','48€',2)
 
+INSERT INTO products(name,relevance,price,makerId,Img)
+    VALUES('Wireless Speakers','8','1000€',5,'url')
+
 
 
 /* 2. Tabla de fabricantes */

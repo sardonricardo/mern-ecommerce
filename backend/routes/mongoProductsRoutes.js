@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
     getAllProducts,
-    getProductById, 
+    getProductByName, 
 } = require("../controllers/mongodb_products_controllers"); 
 
 //GET all products form db
@@ -14,6 +14,9 @@ router.get('/', getAllProducts);
 //GET all products by Id from db
 //GET /api/produts/:id
 // Public
-router.get('/:id', getProductById); 
+router.get('/:name', getProductByName);
+
+
+//GET all products by 
 
 module.exports = router

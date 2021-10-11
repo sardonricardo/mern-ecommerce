@@ -10,10 +10,10 @@ const getAllProducts = async (req, res) => {
     }
 }
 
-const getProductById = async (req, res) => {
+const getProductByName = async (req, res) => {
 
     try {
-        const products = await Product.findById({}); 
+        const products = await Product.findByName({}); 
         res.json(products); 
     } catch (error) {
         console.log(error)
@@ -23,5 +23,5 @@ const getProductById = async (req, res) => {
 
 module.exports = {
     getAllProducts,
-    getProductById
+    getProductByName
 }
