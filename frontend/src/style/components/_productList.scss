@@ -1,0 +1,14 @@
+.container-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.card {
+    width: 250px;
+    height: 35vh;
+    margin: 10px;
+
+}

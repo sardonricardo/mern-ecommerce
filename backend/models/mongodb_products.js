@@ -11,7 +11,7 @@ const productSchema =  new mongoose.Schema(
             type: Number,
             require: true,
         },
-        company: {
+        maker: {
             type: String,
             require: true, 
         },
