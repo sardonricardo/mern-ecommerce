@@ -1,25 +1,58 @@
-/* import React from "react";
-import Carta from '@mui/material/Card'; 
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import React, {useState} from "react";
+import { Link } from "react-router-dom"
 
-const Card = ( {props}) => {
+const Card = (props) => {
 
-  console.log(posts)
 
-  return <div>
-  {posts.map(post => (
-    <div key={post.id}>
-      <h2>{post.title}</h2>
-      <h4>{post.price}€</h4>
-      <img src={post.productImage} width="100px"/></div>
-      
-  ))}
-</div>;
-    
-  };
 
+  const [searchItem, setSearchItem] = useState("")
+
+  console.log(props)
+
+  return (
+  
+
+  <div className="container-card">
+  
+  {props.info.filter((val)=> {
+    if (searchItem == "") {
+      return val
+    } else if (val.title.toLowerCase().includes(searchItem.toLowerCase())){
+      return val
+    }
+  }).map((val, key) => {
+    return (
+      <div key={key} className="container-info">
+        <h3>{val.title}</h3>
+        <div>
+          <img src={val.productImage} />
+        </div>
+        <h4>{val.price}€</h4>
+        
+        <Link to={`/products/${val._id}`} className="info_button">
+          View
+        </Link>
+        </div>
+
+    )
+  })}
+  </div>
+  
+
+  
+  )
+  
+  
+  {/* <div>
+ 
+ {props.info.map(currentPost => (
+   <div key={currentPost.id}>
+     <h2>{currentPost.title}</h2>
+     <h4>{currentPost.price}€</h4>
+     <img src={currentPost.productImage} width="100px"/></div>
+ ))} 
+
+</div> */}
+  
+ }
 export default Card;
- */

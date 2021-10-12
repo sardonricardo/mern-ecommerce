@@ -5,7 +5,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const session = require('express-session')
 const router = require('./routes/router')
-const router_api = require('./routes/router_api')
+const postgresProductsRoutes = require('./routes/postgresProductsRoutes')
 const mongoProductsRoutes = require('./routes/mongoProductsRoutes')
 
 const app = express()
@@ -32,8 +32,8 @@ app.use(cors())
 
 // Routes
 app.use('/', router)
-app.use('/api', router_api);
-app.use('/api/products', mongoProductsRoutes)
+app.use('/api/items', postgresProductsRoutes);
+/* app.use('/api/products', mongoProductsRoutes) */
 
 /* app.use('/api', router_api); */
 

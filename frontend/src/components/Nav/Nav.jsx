@@ -16,11 +16,7 @@ const Nav = () => {
     <div className="navbar_logo">
       <h2>THE|_|BRAICH SHOP</h2>
     </div>
-    <div className="container-buttons">
-      <button>Name</button>
-      <button>Rating</button>
-      <button>Price</button>
-    </div>
+    
     <ul className="navbar-links">
       <li>
       <Link to="/cart">
@@ -34,9 +30,6 @@ const Nav = () => {
           Shop
       </Link>
       </li>
-
-
-
     </ul>
 
     {/*Hamburguer menu*/}
