@@ -6,8 +6,7 @@ const products = {
     getProducts: async () => {
         try {
             const res = await pool.query('SELECT * FROM products');
-            
-            console.log(res.rows); 
+            console.log(res); 
             pool.end();
 
         } catch (e) {
@@ -17,4 +16,4 @@ const products = {
 
 }; 
 
-products.getProducts(); 
+module.exports = products
