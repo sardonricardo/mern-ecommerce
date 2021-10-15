@@ -58,11 +58,22 @@ const ProductList = () => {
   }
 
   const handleSort = (e) => {
-    setSortItem(e.target.value)
+    console.log("puto", e)
+    newPosts.sort((prev, next) => {
+      console.log(prev)
+      if (prev.list_title > next.list_title) {
+        return 1
+      } else if (prev.list_title < next.list_title) {
+        return -1
+      }
+      return 0
+    });
+    setPosts(0);  //Para renderizar de nuevo el componente. 
   }
 
   const searchGame = () => {
     return newPosts.filter((val)=> {
+
       if (searchItem == "") {
         return val
       } else if (val.title.toLowerCase().includes(searchItem.toLowerCase())){
