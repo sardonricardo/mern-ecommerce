@@ -2,9 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "data:import": "node seederScript.js",
+    "maker:import": "node makersSeederScripts.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +22,12 @@
     "formidable": "^1.2.2",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
+    "mongodb": "^4.1.3",
     "mongoose": "^6.0.10",
-    "morgan": "^1.10.0"
+    "mongoose-serial": "^1.0.4",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.7.0"
   }
 }
