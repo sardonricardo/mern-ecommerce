@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import Search from '../Search'
 
 const Nav = () => {
 
@@ -11,11 +12,11 @@ const Nav = () => {
   };
  */
 
-  return <nav className="navbar">
 
-    <div className="navbar_logo">
-      <h2>THE|_|BRAICH SHOP</h2>
-    </div>
+
+
+  return <nav className="navbar">
+    <h2>THEBRIDGE|_|GAMESHOP</h2>
     
     <ul className="navbar-links">
       <li>
@@ -26,9 +27,9 @@ const Nav = () => {
       </Link>
       </li> 
       <li>
-      <Link to="/">
+     {/*  <Link to="/">
           Shop
-      </Link>
+      </Link> */}
       </li>
     </ul>
 

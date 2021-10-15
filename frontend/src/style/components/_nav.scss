@@ -1,12 +1,13 @@
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgb(32, 24, 42);
-    height: 75px;
-    color: white;
-    border-bottom: solid 4px rgb(228,80,82);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #20182a;
+  height: 75px;
+  color: white;
+  width: 100vw;
+    
 }
 
 .navbar-links {

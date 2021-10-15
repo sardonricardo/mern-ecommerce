@@ -1,27 +1,40 @@
-import React, { useContext, useState, useEffect } from 'react';
-import Card from '../Card';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { userContext } from '../../context/useContext';
+import ProductCard from '../ProductCard';
+import Pagination from '../Pagination'
 import axios from 'axios'; 
-import List from '../List';
-import ReactPaginate from "react-paginate"; 
-import Pagination from "../Pagination"
-
-
 
 
 const ProductList = () => {
 
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false); //Vacío para evitar la precarga.  
+  const {newPosts, setNewPosts} = useContext(userContext); 
+
+  console.log(newPosts)
+
+  //Nuevo estado a mandar por context a App.js
+  const [posts, setPosts] = useState([]); 
+  //Lleno con el fetch de la base de datos. 
+  const [loading, setLoading] = useState(false); 
+  //Vacío para evitar la precarga. Estado del loader en el case de haberlo.  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10); 
-  const [searchItem, setSearchItem] = useState("") //Para el buscador
+  //Estados para la paginación. 
+
+  const [searchItem, setSearchItem] = useState("")
+  //Para el buscador
+
+  const [sortItem, setSortItem] = useState("")
+  //Para el filtro
+
+  const inputEl = useRef("") //valor vacío
+
 
   useEffect(() => {
     const fetchPosts =  async () => {
       setLoading(true);
       const res = await axios.get('http://localhost:3002/api/items/');
-      setPosts(res.data);
-      console.log(res.data)
+      setNewPosts(res.data);
       setLoading(false)
     }
 
@@ -32,22 +45,89 @@ const ProductList = () => {
   //Get current posts 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); 
+  const currentPosts = newPosts.slice(indexOfFirstPost, indexOfLastPost); 
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber); 
 
-  return <div className="container-list">
 
- {/* Para el buscador de items */}
-   
-    {/* {currentPosts.filter((val)=> {
+  const handelSearch = (e) => {
+    setSearchItem(e.target.value)
+
+    /* setSearchItem(event.target.value);  */
+  }
+
+  const handleSort = (e) => {
+    setSortItem(e.target.value)
+  }
+
+  const searchGame = () => {
+    return newPosts.filter((val)=> {
       if (searchItem == "") {
         return val
       } else if (val.title.toLowerCase().includes(searchItem.toLowerCase())){
         return val
       }
+    })
+  }
+
+
+/*  const paintCard = () => {
+        
+    return currentPosts.map((currentPost, i) =>  <ProductCard info={currentPost} key={i}  />)
+} */
+
+  return (
+  <>
+  <div className="container">
+
+    <div className="input-container">
+    <select onChange={handleSort} defaultValue="sort" >
+      <option disabledValue="sort"></option>
+      <option value="name">Name</option>
+      <option value="rating">Rating</option>
+      <option value="price">Price</option>
+    </select>
+      <input type="text" onChange={handelSearch} placeholder="Search..."/>
+    </div>
+    <div className="container-card"> {/*  Input de búsqueda */}
+
+    {currentPosts.filter((val) => {
+      if (searchItem == "") {
+        return val
+      } else if (val.list_title.toLowerCase().includes(searchItem.toLowerCase())) {
+        return val
+      }
     }).map((val, key) => {
+      return (
+        <ProductCard info={val} key={key}/>
+      )
+    })}
+</div>
+</div>
+
+  <div className="container-card">
+
+  {/* {paintCard()} */}{/*  Pintamos los datos obtenidos del fetch */}
+
+     {/* <ProductCard info={posts}/>
+ */}
+  </div>
+  <div>
+    <Pagination postsPerPage={postsPerPage} totalPosts={newPosts.length} paginate={paginate} /> {/* Con esto hacemos la paginación */}
+  </div>
+
+{loading}
+
+</>
+  )};
+
+export default ProductList;
+
+
+ {/* Para el buscador de items */}
+   
+    {/* .map((val, key) => {
       return (
         <div key={key}>
           <h2>{val.title}</h2>
@@ -58,15 +138,4 @@ const ProductList = () => {
     })}
      */}
 
-    <Card info={currentPosts} />
-    <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
-
-
-
-</div>;
-
-
-};
-
-export default ProductList;
-
+   {/*  */}

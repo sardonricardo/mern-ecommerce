@@ -1,6 +1,6 @@
-const pg = require('pg') // Pool se usa para la conexión, y permite tener varias conexiones
+const { Pool } = require('pg') // Pool se usa para la conexión, y permite tener varias conexiones
 
-const pool =  new pg.Pool({
+const pool =  new Pool({
     host: 'localhost',
     user: 'postgres',
     password: 'demo1234',

@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-container {
+    background-color: #20182a;
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 4px rgb(228,80,82);
+} 
+
+input:focus {
+    border: none;
+}
+
+.input-container input {
+    outline: none;
+    font-size: 20px;
+    background: none;
+    border-bottom: 1px solid  rgb(228,80,82) ;
+    color: white;
+    margin: 20px;
+}
+
+.input-container button {
+    margin: 10px;
+}
+
+.container-list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-list:hover {
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.cardHeader {
+    color: white !important; 
+}
+
+.cardContent {
+    color: white;
+}
+
+.icon {
+    color: white;
+    margin: 10px;
+}

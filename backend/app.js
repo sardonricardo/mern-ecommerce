@@ -32,8 +32,8 @@ app.use(cors())
 
 // Routes
 app.use('/', router)
-app.use('/api/items', postgresProductsRoutes);
-/* app.use('/api/products', mongoProductsRoutes) */
+app.use('/api/items', postgresProductsRoutes); 
+/* app.use('/api/products', mongoProductsRoutes)  */
 
 /* app.use('/api', router_api); */
 
